@@ -1,0 +1,50 @@
+<div class="page">
+
+  @if (loading()) {
+  <div class="skeleton-header"></div>
+  <div class="skeleton-list">
+    @for (i of [1,2,3]; track i) {
+    <div class="skeleton skeleton--card"></div>
+    }
+  </div>
+
+  } @else if (subject()) {
+  <div class="breadcrumb">
+    <a routerLink="/subjects" class="breadcrumb-link">Предметы</a>
+    <span class="breadcrumb-sep"></span>
+    <span class="breadcrumb-current">{{ subject()!.name }}</span>
+  </div>
+
+  <div class="subject-header">
+    <div class="subject-icon">📚</div>
+    <div class="subject-info-container">
+      <h1 class="subject-title">{{ subject()!.name }}</h1>
+      <p class="subject-desc">{{ subject()!.description }}</p>
+      <p class="subject-meta">Этот предмет ведут: {{ subject()!.professors.length }}
+        преподавател{{ subject()!.professors.length === 1 ? 'ь' : 'ей' }}</p>
+    </div>
+  </div>
+
+  @if (subject()!.professors.length === 0) {
+  <div class="empty">
+    <span>👨‍🏫</span>
+    <p>Этому предмету пока не назначены преподаватели.</p>
+  </div>
+  } @else {
+  <h2 class="section-title">Преподаватели</h2>
+  <div class="professors-grid">
+    @for (prof of subject()!.professors; track prof.id) {
+    <a [routerLink]="['/professors', prof.id]" class="prof-card">
+      <div class="prof-avatar">{{ initials(prof.name) }}</div>
+      <div class="prof-info">
+        <span class="prof-name">{{ prof.name }}</span>
+        <span class="prof-hint">Профиль и отзывы →</span>
+      </div>
+    </a>
+    }
+  </div>
+  }
+
+  }
+
+</div>

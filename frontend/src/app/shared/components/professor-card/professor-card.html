@@ -1,0 +1,8 @@
+<a [routerLink]="['/professors', professor.prof_id]" class="professor-card">
+  <div class="avatar">{{ initials }}</div>
+  <div class="card-info">
+    <h3 class="card-name">{{ professor.name }}</h3>
+    <p class="card-desc">{{ professor.description }}</p>
+  </div>
+  <span class="card-arrow">→</span>
+</a>

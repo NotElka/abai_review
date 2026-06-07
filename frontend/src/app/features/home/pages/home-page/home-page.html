@@ -1,0 +1,164 @@
+<main class="home-page">
+
+  <section class="hero" id="hero-section">
+    <div class="hero-bg">
+      <div class="hero-shape hero-shape--1"></div>
+      <div class="hero-shape hero-shape--2"></div>
+      <div class="hero-shape hero-shape--3"></div>
+    </div>
+
+    <div class="hero-content">
+      <span class="hero-badge">🎓 Отзывы о преподавателях Abai University</span>
+      <h1 class="hero-title">
+        Выбирайте <span class="hero-title-accent">лучших преподавателей</span><br>
+        для успешной учёбы
+      </h1>
+      <p class="hero-subtitle">
+        Изучайте предметы, читайте честные отзывы других студентов
+        и собирайте список понравившихся преподавателей.
+      </p>
+    
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">{{ professorsCount() }}</span>
+          <span class="stat-label">преподавателей</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">{{ subjectsCount() }}</span>
+          <span class="stat-label">предметов</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">Возможности</span>
+        <h2 class="section-title">Всё, что вам нужно</h2>
+        <p class="section-subtitle">Удобная навигация по платформе помогает принимать взвешенные решения об учёбе.</p>
+      </div>
+
+      <div class="features-grid">
+
+        <a routerLink="/subjects" class="feature-card" id="card-subjects">
+          <div class="feature-card-icon feature-card-icon--blue">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
+          </div>
+          <h3 class="feature-card-title">Предметы</h3>
+          <p class="feature-card-desc">
+            Изучите все учебные предметы Abai University. Нажмите на любой предмет, чтобы увидеть, какие преподаватели его ведут.
+          </p>
+          <span class="feature-card-link">
+            Смотреть предметы
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+
+      
+        <a routerLink="/professors" class="feature-card" id="card-professors">
+          <div class="feature-card-icon feature-card-icon--indigo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="feature-card-title">Преподаватели</h3>
+          <p class="feature-card-desc">
+            Просматривайте всех преподавателей, смотрите их рейтинги, оценки сложности и читайте отзывы студентов.
+          </p>
+          <span class="feature-card-link">
+            Смотреть преподавателей
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+
+    
+        <a routerLink="/wishlist" class="feature-card" id="card-wishlist">
+          <div class="feature-card-icon feature-card-icon--rose">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+          <h3 class="feature-card-title">Избранное</h3>
+          <p class="feature-card-desc">
+            Сохраняйте любимых преподавателей для каждого предмета. Сравнивайте варианты и планируйте лучшее расписание.
+          </p>
+          <span class="feature-card-link">
+            Открыть избранное
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="how-it-works-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge">Инструкция</span>
+        <h2 class="section-title">Как это работает</h2>
+        <p class="section-subtitle">Начните всего за несколько простых шагов.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Создайте аккаунт</h3>
+          <p class="step-desc">
+            Зарегистрируйтесь, чтобы открыть все возможности: оставлять отзывы, добавлять преподавателей в избранное и сохранять предпочтения.
+          </p>
+        </div>
+
+        <div class="step-connector">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--blue-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Изучайте и исследуйте</h3>
+          <p class="step-desc">
+            Просматривайте предметы и преподавателей. Читайте подробные отзывы, рейтинги и оценки сложности от реальных студентов.
+          </p>
+        </div>
+
+        <div class="step-connector">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--blue-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Оценивайте и сохраняйте</h3>
+          <p class="step-desc">
+            Оставляйте честные отзывы о преподавателях и добавляйте любимых в избранное, чтобы планировать заранее.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="cta-section">
+    <div class="section-container">
+      <div class="cta-card">
+        <div class="cta-content">
+          <h2 class="cta-title">Готовы начать?</h2>
+          <p class="cta-desc">Присоединяйтесь к сообществу студентов Abai University и помогайте однокурсникам делать правильный выбор.</p>
+          <div class="cta-actions">
+            <a routerLink="/login" class="btn btn-white btn-lg" id="cta-login">Войти в аккаунт</a>
+            <a routerLink="/register" class="btn btn-ghost btn-lg" id="cta-register">Создать бесплатный аккаунт</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="main-footer">
+    <div class="section-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="abai-logo.jpg" alt="Abai University" class="footer-logo" />
+        </div>
+        <p class="footer-copy">&copy; 2026 Платформа отзывов о преподавателях Abai University. Авторы: Болотнов, Кабиров и Абдрахманов.</p>
+      </div>
+    </div>
+  </footer>
+
+</main>

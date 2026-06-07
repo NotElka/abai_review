@@ -1,0 +1,60 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>С возвращением</h2>
+    <p class="subtitle">Войдите в свой аккаунт</p>
+
+    @if (error) {
+      <div class="alert alert-error">
+        {{ error }}
+      </div>
+    }
+
+    @if (success) {
+      <div class="alert alert-success">
+        {{ success }}
+      </div>
+    }
+
+    <form (ngSubmit)="onSubmit()">
+      
+      <div class="form-group">
+        <label for="username">Имя пользователя</label>
+        <input
+          type="text"
+          id="username"
+          [(ngModel)]="username"
+            name="username"
+          placeholder="Введите имя пользователя"
+          autocomplete="username"
+          [disabled]="loading"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Введите пароль"
+          autocomplete="current-password"
+          [disabled]="loading"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="loading"
+      >
+        {{ loading ? 'Вход...' : 'Войти' }}
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      Нет аккаунта?
+      <a routerLink="/register">Зарегистрироваться</a>
+    </div>
+  </div>
+</div>
