@@ -7,6 +7,7 @@ import { ReviewService } from '../../../../core/services/review';
 import { DatePipe } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { Review } from '../../../../core/models/review.model';
+import { environment } from '../../../../../environments/environment';
 
 interface UserInfo {
   id: number;
@@ -69,10 +70,10 @@ export class ProfilePage implements OnInit {
 
   private loadData(): void {
     forkJoin({
-      me: this.http.get<UserInfo>('http://localhost:8000/me/'),
-      reviews: this.http.get<Review[]>('http://localhost:8000/reviews/'),
-      professors: this.http.get<ProfessorItem[]>('http://localhost:8000/professors/'),
-      subjects: this.http.get<SubjectItem[]>('http://localhost:8000/subjects/'),
+      me: this.http.get<UserInfo>(`${environment.apiUrl}/me/`),
+      reviews: this.http.get<Review[]>(`${environment.apiUrl}/reviews/`),
+      professors: this.http.get<ProfessorItem[]>(`${environment.apiUrl}/professors/`),
+      subjects: this.http.get<SubjectItem[]>(`${environment.apiUrl}/subjects/`),
     }).subscribe({
       next: ({ me, reviews, professors, subjects }) => {
         this.user.set(me);

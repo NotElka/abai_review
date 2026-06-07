@@ -10,6 +10,7 @@ import { AuthService } from '../../../../core/services/auth';
 import { Professor } from '../../../../core/models/professor.model';
 import { Review, CreateReviewRequest } from '../../../../core/models/review.model';
 import { ReviewItem } from '../../../../shared/components/review-item/review-item';
+import { environment } from '../../../../../environments/environment';
 import { Subject } from '../../../../core/models/subject.model';
 
 type FilterType = 'all' | 'positive' | 'negative';
@@ -85,7 +86,7 @@ export class ProfessorDetail implements OnInit {
         if (prof?.subjects?.length) {
           const loaded: Subject[] = [];
           prof.subjects.forEach(subjId => {
-            this.http.get<any>(`http://localhost:8000/subjects/${subjId}/`).subscribe({
+            this.http.get<any>(`${environment.apiUrl}/subjects/${subjId}/`).subscribe({
               next: (s) => {
                 // API returns { id, name, ... } but Subject uses subj_id
                 loaded.push({ subj_id: s.id ?? s.subj_id, name: s.name, description: s.description });

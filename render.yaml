@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: abai-review-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: "bash build.sh"
+    startCommand: "gunicorn ProfessorReviewBack.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: "3.12.8"

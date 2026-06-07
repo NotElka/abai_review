@@ -2,11 +2,12 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Review, CreateReviewRequest } from '../models/review.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ReviewService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = environment.apiUrl;
 
   getByProfessor(profId: number, type?: 'positive' | 'negative'): Observable<Review[]> {
     let params = new HttpParams();

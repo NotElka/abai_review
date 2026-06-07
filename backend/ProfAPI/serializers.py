@@ -44,9 +44,16 @@ class ProfessorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ReviewSerializer(serializers.ModelSerializer):
+    user_name = serializers.SerializerMethodField()
+
     class Meta:
         model = Review
-        fields = ['rev_id', 'user', 'professor', 'subject', 'rating', 'difficulty', 'text', 'created_at', 'is_anounimous']
+        fields = ['rev_id', 'user', 'user_name', 'professor', 'subject', 'rating', 'difficulty', 'text', 'created_at', 'is_anounimous']
+
+    def get_user_name(self, obj):
+        if obj.is_anounimous:
+            return None
+        return obj.user.get_full_name() or obj.user.username
 
 class SubjectSerializer(serializers.ModelSerializer):
     class Meta:

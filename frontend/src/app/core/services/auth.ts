@@ -2,6 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterRequest, AuthResponse, LoginRequest } from '../models/user.model';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private http = inject(HttpClient);
   private readonly router = inject(Router);
-  private apiUrl = 'http://localhost:8000/';
+  private apiUrl = environment.apiUrl + '/';
 
   private readonly ACCESS_TOKEN_KEY = 'access_token';
   private readonly REFRESH_TOKEN_KEY = 'refresh_token';

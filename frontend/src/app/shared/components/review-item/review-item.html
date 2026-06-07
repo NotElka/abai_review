@@ -2,11 +2,11 @@
   <div class="review-header">
     <div class="review-author">
       <div class="author-avatar" [class]="'avatar--' + ratingClass">
-        {{ review.is_anounimous ? '?' : '#' + review.user }}
+        {{ review.is_anounimous ? '?' : (review.user_name ? review.user_name.charAt(0).toUpperCase() : '#' + review.user) }}
       </div>
       <div>
         <span class="author-name">
-          {{ review.is_anounimous ? 'Аноним' : 'Студент #' + review.user }}
+          {{ review.is_anounimous ? 'Аноним' : (review.user_name || 'Студент #' + review.user) }}
         </span>
         <span class="review-date">{{ formattedDate }}</span>
       </div>

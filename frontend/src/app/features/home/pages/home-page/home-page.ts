@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-home-page',
@@ -17,8 +18,8 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     forkJoin({
-      professors: this.http.get<any[]>('http://localhost:8000/professors/'),
-      subjects: this.http.get<any[]>('http://localhost:8000/subjects/'),
+      professors: this.http.get<any[]>(`${environment.apiUrl}/professors/`),
+      subjects: this.http.get<any[]>(`${environment.apiUrl}/subjects/`),
     }).subscribe({
       next: (data) => {
         this.professorsCount.set(data.professors.length);

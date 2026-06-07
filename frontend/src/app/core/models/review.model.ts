@@ -1,6 +1,7 @@
 export interface Review {
   rev_id: number;
   user: number;
+  user_name?: string | null;
   professor: number;
   subject: number;
   rating: number;

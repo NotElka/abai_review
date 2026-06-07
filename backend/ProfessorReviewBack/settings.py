@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)7s3#7q(+axvy6+01hx$d*cz^0gq45q_qs*3$h$z=lgo#10kaj'
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-)7s3#7q(+axvy6+01hx$d*cz^0gq45q_qs*3$h$z=lgo#10kaj',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# По умолчанию True для удобства локальной разработки; на проде ставим DEBUG=False.
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+# Хосты берём из переменной окружения (через запятую) + локальные адреса.
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS += [h for h in os.environ.get('ALLOWED_HOSTS', '').split(',') if h]
+
+# Render автоматически прокидывает внешний хост в эту переменную.
+RENDER_HOST = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_HOST:
+    ALLOWED_HOSTS.append(RENDER_HOST)
+
+# Доверенные источники для CSRF (нужно для входа в админку по HTTPS-домену).
+CSRF_TRUSTED_ORIGINS = [
+    f'https://{h}' for h in ALLOWED_HOSTS if h not in ('localhost', '127.0.0.1')
+]
 
 
 # Application definition
@@ -45,6 +62,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -134,3 +152,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# WhiteNoise: сжатие и кэширование статики на проде (нужно для админки).
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}

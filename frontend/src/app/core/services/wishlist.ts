@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface WishlistItem {
   id: number;
@@ -17,7 +18,7 @@ export interface WishlistItem {
 })
 export class WishlistService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = environment.apiUrl;
 
   getAll(): Observable<WishlistItem[]> {
     return this.http.get<WishlistItem[]>(`${this.apiUrl}/wishlist/`);
