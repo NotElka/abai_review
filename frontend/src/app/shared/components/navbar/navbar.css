@@ -58,6 +58,12 @@
   color: var(--blue-600);
 }
 
+.navbar-collapse {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .navbar-menu {
   display: flex;
   gap: 0.25rem;
@@ -67,6 +73,42 @@
   display: flex;
   gap: 0.75rem;
   align-items: center;
+}
+
+/* Кнопка-бургер (скрыта на десктопе). */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--gray-700);
+  border-radius: 2px;
+  transition: transform 0.25s var(--ease), opacity 0.2s var(--ease);
+}
+
+.navbar-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 .nav-link {
@@ -125,4 +167,82 @@
   color: #dc2626;
   border-color: #fecaca;
   background: #fef2f2;
+}
+
+/* ---------- Мобильные устройства ---------- */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .navbar-container {
+    height: 60px;
+  }
+
+  .brand-logo {
+    height: 34px;
+  }
+
+  .brand-text {
+    font-size: 1.1rem;
+  }
+
+  /* Показываем бургер. */
+  .navbar-toggle {
+    display: flex;
+  }
+
+  /* Меню превращается в выпадающую панель под навбаром. */
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem 1rem;
+    background: #fff;
+    border-bottom: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-lg);
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+
+    /* По умолчанию скрыто. */
+    display: none;
+  }
+
+  .navbar-collapse.open {
+    display: flex;
+  }
+
+  .navbar-menu,
+  .navbar-auth {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.25rem;
+  }
+
+  .navbar-auth {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .nav-link {
+    padding: 0.75rem 0.85rem;
+    font-size: 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .nav-link-highlight {
+    text-align: center;
+  }
+
+  .logout-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+  }
 }
